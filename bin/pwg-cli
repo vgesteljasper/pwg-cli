@@ -1,0 +1,70 @@
+#!/usr/bin/env node
+
+const
+  program       = require("commander"),
+  boxen         = require("boxen"),
+  chalk         = require("chalk"),
+  Password      = require("pwg"),
+  buildSetting  = require("./../lib/buildSetting.js")
+
+// get parameters from commander
+
+program
+  .version("1.0.0")
+  .option("-l, --length <n>", "The length of the password to be generated", parseInt)
+  .option("-d, --digits <n>", "The amount of digits in the password", parseInt)
+  .option("-s, --symbols <n>", "The amount of symbols in the password", parseInt)
+  .option("-a, --amount <n>", "The amount of passwords to print", parseInt)
+  .parse(process.argv)
+
+const {
+  length:   lengthParam,
+  digits:   digitParam,
+  symbols:  symbolParam,
+  amount:   amountParam
+} = program
+
+// parse parameters and settings
+
+const builtSettings = buildSetting({
+  length:  { param: lengthParam,  fallback: 20,  name: "--length, -l" },
+  digits:  { param: digitParam,   fallback: 0,   name: "--digits, -d" },
+  symbols: { param: symbolParam,  fallback: 0,   name: "--symbols, -s" },
+  amount:  { param: amountParam,  fallback: 3,   name: "--amount, -a" }
+})
+
+const { length, digits, symbols, amount } = builtSettings
+
+// setup interface
+
+let settings = ""
+for (let key in builtSettings) {
+  settings += `${builtSettings[key].string}\n`
+}
+
+const box = boxen(settings, {
+  margin: 0,
+  padding: { top: 1, right: 5, bottom: 0, left: 3 },
+  borderColor: "blue"
+})
+
+// log parsed settings
+
+console.log(box)
+
+// print passwords
+
+if (length.value >= digits.value + symbols.value) {
+
+  const password = new Password(length.value, symbols.value, digits.value)
+
+  let print = ""
+  for (let i = 0; i < amount.value; i++) {
+    print += `\n${password}`
+  }
+
+  console.log(print)
+
+} else {
+  console.log(`\n${chalk.red("Configuration error:\n==>")} length needs to be >= digits + symbols`)
+}

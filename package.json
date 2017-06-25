@@ -1,0 +1,18 @@
+{
+  "name": "pwg-cli",
+  "version": "1.0.0",
+  "description": "cli tool for the pwg package",
+  "main": "./bin/pwg-cli",
+  "repository": "https://github.com/vgesteljasper/pwg-cli",
+  "author": "Jasper Van Gestel <vgesteljasper@gmail.com>",
+  "license": "MIT",
+  "bin": {
+    "pwg": "./bin/pwg-cli"
+  },
+  "dependencies": {
+    "boxen": "^1.1.0",
+    "chalk": "^1.1.3",
+    "commander": "^2.10.0",
+    "pwg": "^1.0.2"
+  }
+}
