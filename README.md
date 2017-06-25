@@ -23,7 +23,7 @@ parameter | default | description
 **-l**, --length | 20 | **length** of the password to be generated
 **-d**, --digits | 0 | amount of **digits** for the password
 **-s**, --symbols | 0 | amount of **symbols** for the password
-**-a**, --amount | 3 | amount of **passwords** to generate
+**-a**, --amount | 3 | **amount** of passwords to generate
 
 ## Examples
 
