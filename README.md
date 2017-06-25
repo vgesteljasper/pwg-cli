@@ -1,6 +1,6 @@
 # pwg-cli
 
-command line tool for the pwg package
+command line tool for the [pwg](https://github.com/vgesteljasper/pwg) package
 
 ## Installation
 
