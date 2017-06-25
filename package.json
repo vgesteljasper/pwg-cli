@@ -1,11 +1,34 @@
 {
   "name": "pwg-cli",
-  "version": "1.0.0",
-  "description": "cli tool for the pwg package",
+  "version": "1.0.1",
+  "description": "command line tool for the pwg package",
   "main": "./bin/pwg-cli",
-  "repository": "https://github.com/vgesteljasper/pwg-cli",
-  "author": "Jasper Van Gestel <vgesteljasper@gmail.com>",
   "license": "MIT",
+  "homepage": "https://github.com/vgesteljasper/pwg-cli",
+  "author": {
+    "name": "Jasper Van Gestel",
+    "url": "https://github.com/vgesteljasper"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vgesteljasper/pwg-cli.git"
+  },
+  "keywords": [
+    "password",
+    "pass",
+    "generate",
+    "generator",
+    "passgen",
+    "genpass",
+    "package",
+    "cli",
+    "command",
+    "line",
+    "tool"
+  ],
+  "bugs": {
+    "url": "https://github.com/vgesteljasper/pwg-cli/issues"
+  },
   "bin": {
     "pwg": "./bin/pwg-cli"
   },
