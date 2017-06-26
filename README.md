@@ -16,7 +16,16 @@ or with npm:
 $ npm install -g pwg-cli
 ```
 
+## Usage
+
+When --amount is 1 (default), the password will be automatically copied to the clipboard
+unless the -N flag is passed.
+
 ## Options
+
+### Parameters
+
+Chaining of these parameters like `pwg -ds 10` is **NOT** possible. Instead use `pwg -d 10 -s 10`.
 
 parameter | type | default | description
 --- | --- | --- | ---
@@ -25,9 +34,14 @@ parameter | type | default | description
 **-s**, --symbols | Int | 0 | amount of **symbols** for the password
 **-a**, --amount | Int | 1 | **amount** of passwords to generate
 
+### Flags
+
+You can chain these flags like `pwg -SN`.
+
 flag | description
 --- | ---
-**-S**, --silent | **Don't** print options panel
+**-S**, --silent | **Don't print** options panel
+**-N**, --nocopy | **Don't copy** password to clipboard
 
 ## Examples
 
@@ -43,14 +57,12 @@ $ pwd
   │   --amount, -a       1    -> fallback     │
   │                                           │
   └───────────────────────────────────────────┘
-
   MBLxqnLDnEsMEEMGMxyA
 ```
 
 ### return 3 passwords, default options, --silent
 
 ```Shell
-# the following is equal to `$ pwd -a 3 -l 30 -d 0 -s 0`
 $ pwd -a 3 -S
 > uKJALsKBwCrCMDpposnL
   GDMLMyFJyGtMqxBsqCqB
@@ -69,7 +81,6 @@ $ pwd -a 10 -d 10 -s 10
   │   --amount, -a      10                    │
   │                                           │
   └───────────────────────────────────────────┘
-
   §/)=2/815;535^2§=23:
   >>9.29[/>87.:(6497:9
   §§}708&<6}10.3>=§674
@@ -85,7 +96,6 @@ $ pwd -a 10 -d 10 -s 10
 ### return 1 passwords, 40 characters long, 20 digits, --silent
 
 ```Shell
-# the following is equal to `$ pwd -a 3 -l 20 -d 0 -s 20`
 $ pwd -l 40 -d 20 -S
 > 1DE15nn40sKE6K05y0p56oxr73x928p1ox67LrB5
 ```

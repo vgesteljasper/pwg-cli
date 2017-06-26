@@ -4,6 +4,7 @@ const
   program       = require('commander'),
   boxen         = require('boxen'),
   chalk         = require('chalk'),
+  clipboardy    = require('clipboardy'),
   Password      = require('pwg'),
   buildSetting  = require('./../lib/buildSetting.js')
 
@@ -15,6 +16,7 @@ program
   .option('-s, --symbols <n>', 'The amount of symbols in the password', parseInt)
   .option('-a, --amount <n>', 'The amount of passwords to print', parseInt)
   .option('-S, --silent', 'Don\'t print options panel')
+  .option('-N, --nocopy', 'Don\'t copy password to clipboard')
   .parse(process.argv)
 
 const {
@@ -22,8 +24,17 @@ const {
   digits:   digitParam,
   symbols:  symbolParam,
   amount:   amountParam,
-  silent:   silentParam
+  silent:   silentParam,
+  nocopy:   noCopyParam
 } = program
+
+const silent = (typeof silentParam === 'undefined')
+  ? false
+  : true
+
+const noCopy = (typeof noCopyParam === 'undefined')
+  ? false
+  : true
 
 // parse parameters and settings
 
@@ -38,7 +49,7 @@ const { length, digits, symbols, amount } = builtSettings
 
 // only print options panel is --silent, -S flag is not set
 
-if (typeof silentParam === 'undefined') {
+if (!silent) {
 
   // setup interface
 
@@ -63,10 +74,21 @@ if (typeof silentParam === 'undefined') {
 if (length.value >= digits.value + symbols.value) {
 
   const password = new Password(length.value, digits.value, symbols.value)
-
   let print = ''
-  for (let i = 0; i < amount.value; i++) {
-    print += `\n${password}`
+
+  if (amount.value === 1) {
+
+    print = String(password)
+    if (!noCopy) clipboardy.writeSync(print)
+
+  } else {
+
+    for (let i = 0; i < amount.value; i++) {
+      print += (i === 0)
+        ? String(password)
+        : `\n${password}`
+    }
+
   }
 
   console.log(print)

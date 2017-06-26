@@ -1,6 +1,6 @@
 {
   "name": "pwg-cli",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "command line tool for the pwg package",
   "main": "./bin/pwg-cli",
   "license": "MIT",
@@ -35,6 +35,7 @@
   "dependencies": {
     "boxen": "^1.1.0",
     "chalk": "^1.1.3",
+    "clipboardy": "^1.1.4",
     "commander": "^2.10.0",
     "pwg": "^1.0.3"
   }
